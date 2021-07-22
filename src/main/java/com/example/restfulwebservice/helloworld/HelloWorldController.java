@@ -14,11 +14,13 @@ public class HelloWorldController {
         return "Hello World";
     }
 
+    //alt+enter : 객체 신규 생성
     @GetMapping(path = "/hello-world-bean")
     public HelloWorldBean helloWorldBean(){
         return new HelloWorldBean("Hello World");
     }
 
+    //가변데이터 사용법
     @GetMapping(path = "/hello-world-bean/path-variable/{name}")
     public HelloWorldBean helloWorldBean(@PathVariable String name){
         return new HelloWorldBean(String.format("Hello World, %s",name));
