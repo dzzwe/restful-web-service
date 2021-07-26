@@ -38,4 +38,25 @@ public class UserDaoService {
         return null;
     }
 
+    public User deleteById(int id){
+        for(User user : users){
+            if(user.getId() == id){
+                users.remove(user);
+                return user;
+            }
+        }
+        return null;
+    }
+
+    public User updateUser(User changeUser){
+        for(User user : users){
+            if(user.getId() == changeUser.getId()){
+                users.remove(user);
+                users.add(changeUser);
+                return changeUser;
+            }
+        }
+        return null;
+    }
+
 }

@@ -5,7 +5,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.xml.ws.Response;
 import java.net.URI;
 import java.util.List;
 
@@ -36,5 +35,27 @@ public class UserController {
         .buildAndExpand(savedUser.getId())
         .toUri();
         return ResponseEntity.created(location).build();
+    }
+
+    @DeleteMapping("/user/{id}")
+    public void deleteUser(@PathVariable int id){
+        User user = service.deleteById(id);
+        if(user == null){
+            throw new UserNotFoundException(String.format("ID[%s] not found",id));
+        }
+    }
+
+    @PutMapping("/users")
+    public ResponseEntity<User> updateUser(@RequestBody User user){
+        User changeUser = service.updateUser(user);
+        if(changeUser == null){
+            throw new UserNotFoundException(String.format("ID[%s] not found",user.getId()));
+        }
+        URI location = ServletUriComponentsBuilder.fromCurrentRequestUri()
+                .path("/{id}")
+                .buildAndExpand(changeUser.getId())
+                .toUri();
+        return ResponseEntity.created(location).build();
+
     }
 }
