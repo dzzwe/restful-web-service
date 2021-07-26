@@ -5,6 +5,7 @@ import lombok.Data;
 
 
 import java.util.Date;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 @Data
@@ -14,5 +15,7 @@ public class User {
 
     @Size(min=2)
     private String name;
+
+    @Past
     private Date joinData;
 }
