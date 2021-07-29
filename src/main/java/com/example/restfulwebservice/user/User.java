@@ -1,5 +1,6 @@
 package com.example.restfulwebservice.user;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -13,7 +14,8 @@ import javax.validation.constraints.Size;
 
 @Data
 @AllArgsConstructor
-@JsonIgnoreProperties(value = {"password"})
+//@JsonIgnoreProperties(value = {"password"}) //json조회 시 무시되어 나타나지 않음
+@JsonFilter("UserInfo")
 public class User {
     private Integer id;
 
