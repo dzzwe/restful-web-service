@@ -28,7 +28,7 @@ class UserControllerTest {
 
     @Test
     void createUser() {
-        User user = new User(1, "test1", new Date());
+        User user = new User(1, "test1", new Date(),"11","22");
         User user2 = service.save(user);
         assertEquals(user.getId(),user2.getId());
     }
